@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>aria-live - Matthew Roach</title>
+
+	<link media="all" rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+	<header>
+		<h1>aria-live</h1>
+	</header>
+
+	<main id="main-content">
+		<p>
+			Tests around aria-live and its different usage.
+		</p>
+
+		<p>
+			<code>aria-live</code> - values
+		</p>
+		<ul>
+			<li><code>off</code> (default)</li>
+			<li><code>polite</code> - Indicates that updates to the region should be presented at the next graceful opportunity, such as at the end of speaking the current sentence or when the user pauses typing.</li>
+			<li><code>assertive</code> - Indicates that updates to the region have the highest priority and should be presented the user immediately.</li>
+		</ul>
+
+		<button type="button" onclick="getElementById('demo').innerHTML += 'Hello'">Say hello</button>
+		<button type="button" onclick="getElementById('demo1').innerHTML += 'Polite Hello'">Say hello polite</button>
+		<button type="button" onclick="getElementById('demo2').innerHTML += 'Assertive Hello'">Say hello assertive</button>
+		<button type="button" onclick="getElementById('demo1').innerHTML += 'Polite Hello';getElementById('demo2').innerHTML += 'Assertive Hello'">Say hello polite + assertive</button>
+
+		<section>
+			<h2>off</h2>
+			<div id="demo" aria-live="polite"></div>
+		</section>
+
+		<section>
+			<h2>Polite</h2>
+			<div id="demo1" aria-live="polite"></div>
+		</section>
+
+		<section>
+			<h2>Assertive</h2>
+			<div id="demo2" aria-live="assertive"></div>
+		</section>
+
+		<hr />
+
+		<section>
+			<h2>Nested Live Regions</h2>
+
+			<p>
+				Example of nesting live regions within each other
+			</p>
+
+			<h3>Polite nested inside a polite</h3>
+
+			<button type="button" onclick="getElementById('demo3-2').innerHTML += 'Hello Marty'">Say hello</button>
+
+			<div id="demo3" aria-live="polite">
+				<div id="demo3-1">Great Scott!</div>
+				<div id="demo3-2" aria-live="polite"></div>
+			</div>
+
+			<h3>Polite nested inside a polite with atomic on parent</h3>
+
+			<button type="button" onclick="getElementById('demo4-2').innerHTML += 'Hello Marty'">Say hello</button>
+
+			<div id="demo3" aria-live="polite" aria-atomic="true">
+				<div id="demo4-1">Great Scott!</div>
+				<div id="demo4-2" aria-live="polite"></div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<a href="https://matthewroach.me">Matthew Roach</a>
+	</footer>
+</body>
+</html>
